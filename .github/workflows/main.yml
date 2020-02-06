@@ -15,3 +15,5 @@ jobs:
         uses: actions/download-artifact@v1.0.0
         with:
           name: live555-md5
+      - name: Download live555 md5
+        uses: rostislavzz/action-live555-version-check@master
