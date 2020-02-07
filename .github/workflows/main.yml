@@ -11,9 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v1.0.0
-        with:
-          name: live555-md5
-      - name: Download live555 md5
-        uses: rostislavzz/action-live555-version-check@master
+      - name: Check new version available
+        id: check_new_version
+        run: |
+          wget -O live555-latest-md5-new.txt http://www.live555.com/liveMedia/public/live555-latest-md5.txt
+          if [ $(cmp -s live555-latest-md5.txt live555-latest-md5-new.txt) ]; then echo "::set-output name=available::false"; else echo "::set-output name=available::true"; fi
+      - name: Download new version
+        if: steps.check_new_version.outputs.available == 'true'
+        run: wget http://www.live555.com/liveMedia/public/live555-latest.tar.gz
