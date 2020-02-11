@@ -14,6 +14,7 @@ jobs:
         run: |
           wget -O live555-latest-md5-new.txt http://www.live555.com/liveMedia/public/live555-latest-md5.txt && \
           if [ $(cmp -s live555-latest-md5.txt live555-latest-md5-new.txt) ]; then echo "::set-output name=available::false"; else echo "::set-output name=available::true"; fi
+      - uses: actions/checkout@v2
       - name: Build new version image
         if: steps.check_new_version.outputs.available == 'true'
         run: docker build --no-cache -t paradisi/live555-proxy-server:latest .
