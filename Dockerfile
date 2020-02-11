@@ -17,7 +17,11 @@ RUN cd /tmp/live && \
 RUN [ "cross-build-end" ]
 
 FROM balenalib/raspberrypi3-alpine:latest-run
+
+RUN [ "cross-build-start" ]
 RUN install_packages gcc
+RUN [ "cross-build-end" ]
+
 COPY --from=builder /usr/local/bin/live555ProxyServer /usr/local/bin/
 
 EXPOSE 554
