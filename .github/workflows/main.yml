@@ -7,17 +7,15 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check new version available
+      - name: Check new version
         id: check_new_version
         run: |
           wget -O live555-latest-md5-new.txt http://www.live555.com/liveMedia/public/live555-latest-md5.txt && \
           if [ $(cmp -s live555-latest-md5.txt live555-latest-md5-new.txt) ]; then echo "::set-output name=available::false"; else echo "::set-output name=available::true"; fi
-      - name: Download new version
+      - name: Build new version image
         if: steps.check_new_version.outputs.available == 'true'
-        run: |
-          wget http://www.live555.com/liveMedia/public/live555-latest.tar.gz && \
-          tar -zxvf live555-latest.tar.gz
+        run: docker build --no-cache -t paradisi/live555-proxy-server:latest .
+      - name: Publish image
+        run: docker push paradisi/live555-proxy-server:latest
