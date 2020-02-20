@@ -1,8 +1,8 @@
-FROM balenalib/raspberrypi3-alpine:latest-build AS builder
+FROM alpine AS builder
 
-RUN [ "cross-build-start" ]
-
-RUN install_packages openssl-dev
+RUN apk add --update --no-cache \
+  build-base \
+  openssl-dev
 
 # Get Live555 source
 RUN cd /tmp/ && \
@@ -14,17 +14,12 @@ RUN cd /tmp/live && \
   ./genMakefiles linux && \
   make && make install && make distclean
 
-RUN [ "cross-build-end" ]
-
-FROM balenalib/raspberrypi3-alpine:latest-run
-
-RUN [ "cross-build-start" ]
-RUN install_packages gcc
-RUN [ "cross-build-end" ]
-
+FROM alpine
+RUN apk add --update --no-cache \
+  gcc
 COPY --from=builder /usr/local/bin/live555ProxyServer /usr/local/bin/
 
 EXPOSE 554
 EXPOSE 8554
 
-ENTRYPOINT ["live555ProxyServer"]
+CMD ["live555ProxyServer"]
