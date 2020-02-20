@@ -22,7 +22,7 @@ jobs:
           version: latest
       - name: Build new version image
         if: steps.check_new_version.outputs.available == 'true'
-        run: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm65/v8,linux/amd6 -t paradisi/live555-proxy-server:latest .
+        run: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/amd64 -t paradisi/live555-proxy-server:latest .
       - name: Publish image
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
