@@ -20,13 +20,13 @@ jobs:
         uses: crazy-max/ghaction-docker-buildx@v1
         with:
           version: latest
-      - name: Build new version image
-        if: steps.check_new_version.outputs.available == 'true'
-        run: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/amd64 -t docker.io/paradisi/live555-proxy-server:latest .
-      - name: Publish image
+      - name: Docker Login
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-        run: |
-          echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
-          docker push docker.io/paradisi/live555-proxy-server:latest
+        run: echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
+      - name: Docker Build
+        if: steps.check_new_version.outputs.available == 'true'
+        run: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/amd64 -t docker.io/paradisi/live555-proxy-server:latest .
+      - name: Docker Push
+        run: docker push docker.io/paradisi/live555-proxy-server:latest
