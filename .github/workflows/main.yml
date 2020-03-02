@@ -30,9 +30,9 @@ jobs:
         run: |
           docker buildx build \
             --platform linux/arm/v6,linux/arm/v7,linux/amd64 \
-            --tag docker.io/paradisi/live555-proxy-server:latest \
-            --output "type=image,push=false" .
+            --tag paradisi/live555-proxy-server:latest \
+            --push .
       - name: Docker Push
         run: |
           docker images
-          docker push docker.io/paradisi/live555-proxy-server:latest
+          docker push paradisi/live555-proxy-server:latest
