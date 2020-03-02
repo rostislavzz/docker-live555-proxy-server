@@ -27,7 +27,11 @@ jobs:
         run: echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
       - name: Docker Build
         if: steps.check_new_version.outputs.available == 'true'
-        run: docker buildx build --platform linux/arm/v6,linux/arm/v7,linux/amd64 --tag docker.io/paradisi/live555-proxy-server:latest .
+        run: |
+          docker buildx build \
+            --platform linux/arm/v6,linux/arm/v7,linux/amd64 \
+            --tag docker.io/paradisi/live555-proxy-server:latest \
+            --output "type=image,push=false" .
       - name: Docker Push
         run: |
           docker images
