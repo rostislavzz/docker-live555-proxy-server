@@ -25,14 +25,10 @@ jobs:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
         run: echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
-      - name: Docker Build
+      - name: Docker Build & Push
         if: steps.check_new_version.outputs.available == 'true'
         run: |
           docker buildx build \
             --platform linux/arm/v6,linux/arm/v7,linux/amd64 \
             --tag paradisi/live555-proxy-server:latest \
             --push .
-      - name: Docker Push
-        run: |
-          docker images
-          docker push paradisi/live555-proxy-server:latest
