@@ -29,3 +29,8 @@ jobs:
         run: |
           wget -O changelog.txt http://www.live555.com/liveMedia/public/changelog.txt
           wget -O live555-latest-md5.txt http://www.live555.com/liveMedia/public/live555-latest-md5.txt
+      - name: Get version
+        id: get-version
+        run: echo "::set-output name=version::`egrep -o -m 1 -i "^\d{4}\.\d{2}\.\d{2}[a-z]?" changelog.txt`"
+      - name: test
+        run: echo ${{steps.get-version.outputs.version}}
