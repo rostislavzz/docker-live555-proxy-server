@@ -1,6 +1,9 @@
 name: Check for new version of LIVE555 Media Server
 
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron: '0 0 * * 1'
 
