@@ -1,9 +1,6 @@
 name: Check for new version of LIVE555 Media Server
 
 on:
-  push:
-    branches:
-      - master
   schedule:
     - cron: '0 0 * * 1'
 
@@ -15,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Check for new version
         id: check-for-new-version
-        timeout-minutes: 5
+        timeout-minutes: 1
         run: |
           if [ $(curl -s -N http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp -s live555-latest-md5.txt) ];
           then
@@ -25,18 +22,18 @@ jobs:
           fi
       - name: Download changelog
         if: ${{ steps.check-for-new-version.outputs.available }}
-        timeout-minutes: 5
+        timeout-minutes: 1
         run: |
           wget -O changelog.txt http://www.live555.com/liveMedia/public/changelog.txt
           wget -O live555-latest-md5.txt http://www.live555.com/liveMedia/public/live555-latest-md5.txt
       - name: Get version
         id: get-version
         run: echo "::set-output name=version::`grep -Eo -m1 '^[[:digit:]]{4}\.[[:digit:]]{2}\.[[:digit:]]{2}[[:alpha:]]?' changelog.txt`"
-      - name: Commit and push
+      - name: Commit, tag and push
         run: |
-          git config --global user.name '${{github.repository_owner}}'
+          git config --global user.name '${{ github.repository_owner }}'
           git config --global user.email 'rost.shikhov@gmail.com'
-          git commit -am "${{steps.get-version.outputs.version}}"
+          git commit -am "${{ steps.get-version.outputs.version }}"
           git push
-          git tag "${{steps.get-version.outputs.version}}"
+          git tag "${{ steps.get-version.outputs.version }}"
           git push --tags

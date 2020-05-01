@@ -1,0 +1,27 @@
+name: Build new version of LIVE555 Proxy Server
+
+on:
+  push:
+    tags:
+      - *
+
+jobs:
+  check-for-new-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Docker Buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
+      - name: Docker Login
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+        run: echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
+      - name: Docker Build & Push
+        run: |
+          docker buildx build \
+            --platform linux/arm/v6,linux/arm/v7,linux/amd64 \
+            --tag paradisi/live555-proxy-server:latest \
+            --tag paradisi/live555-proxy-server:${{ github.ref }} \
+            --push .
