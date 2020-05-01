@@ -14,7 +14,7 @@ jobs:
       available: ${{ steps.check-for-new-version.outputs.available }}
     steps:
       - name: test
-        run: curl --silent --no-buffer http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp --silent live555-latest-md5.txt
+        run: echo e3d352abacb8dffb709b1b45cff8be32 | cmp --silent live555-latest-md5.txt
       - name: Check for new version
         timeout-minutes: 5
         run: if [ "$(curl --silent --no-buffer http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp --silent live555-latest-md5.txt)" ]; then echo "::set-output name=available::false"; else echo "::set-output name=available::true"; fi
