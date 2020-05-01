@@ -16,6 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Check for new version
+        id: check-for-new-version
         timeout-minutes: 5
         run: |
           if [ $(curl -s -N http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp -s live555-latest-md5.txt) ];
