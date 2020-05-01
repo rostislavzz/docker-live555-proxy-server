@@ -13,11 +13,11 @@ jobs:
     outputs:
       available: ${{ steps.check-for-new-version.outputs.available }}
     steps:
-      - name: cmp
-        run: cmp --help
+      - name: test
+        run: curl --silent --no-buffer http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp --silent live555-latest-md5.txt
       - name: Check for new version
         timeout-minutes: 5
-        run: if [ $(curl --silent --no-buffer http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp --silent live555-latest-md5.txt) ]; then echo "::set-output name=available::false"; else echo "::set-output name=available::true"; fi
+        run: if [ "$(curl --silent --no-buffer http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp --silent live555-latest-md5.txt)" ]; then echo "::set-output name=available::false"; else echo "::set-output name=available::true"; fi
   download-changelog:
     runs-on: ubuntu-latest
     needs: check-for-new-version
