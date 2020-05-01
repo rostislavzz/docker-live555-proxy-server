@@ -3,7 +3,7 @@ name: Build new version of LIVE555 Proxy Server
 on:
   push:
     tags:
-      - *
+      - "*"
 
 jobs:
   check-for-new-version:
