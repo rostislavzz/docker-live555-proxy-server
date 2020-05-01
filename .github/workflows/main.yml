@@ -1,34 +1,13 @@
-name: CI
+name: Check for new version of LIVE555 Media Server
 
 on:
-  push:
-    branches:
-      - master
+  schedule:
+    - cron: '0 0 * * 1'
 
 jobs:
-  build:
+  check-for-new-version:
     runs-on: ubuntu-latest
     steps:
-      - name: Check new version
-        id: check_new_version
-        run: |
-          wget -O live555-latest-md5-new.txt http://www.live555.com/liveMedia/public/live555-latest-md5.txt && \
-          if [ $(cmp -s live555-latest-md5.txt live555-latest-md5-new.txt) ]; then echo "::set-output name=available::false"; else echo "::set-output name=available::true"; fi
-      - uses: actions/checkout@v2
-      - name: Setup Docker Buildx
-        id: buildx
-        uses: crazy-max/ghaction-docker-buildx@v1
-        with:
-          version: latest
-      - name: Docker Login
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-        run: echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
-      - name: Docker Build & Push
-        if: steps.check_new_version.outputs.available == 'true'
-        run: |
-          docker buildx build \
-            --platform linux/arm/v6,linux/arm/v7,linux/amd64 \
-            --tag paradisi/live555-proxy-server:latest \
-            --push .
+      - name: Check for new version
+        timeout-minutes: 5
+        run: if [ $(curl --silent http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp --silent live555-latest-md5-new.txt) ]; then echo "::set-output name=new::false"; else echo "::set-output name=new::true"; fi
