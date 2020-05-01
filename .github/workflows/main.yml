@@ -10,7 +10,17 @@ on:
 jobs:
   check-for-new-version:
     runs-on: ubuntu-latest
+    outputs:
+      available: ${{ steps.check-for-new-version.outputs.available }}
     steps:
       - name: Check for new version
         timeout-minutes: 5
-        run: if [ $(curl --silent http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp --silent live555-latest-md5-new.txt) ]; then echo "::set-output name=new::false"; else echo "::set-output name=new::true"; fi
+        run: if [ $(curl --silent http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp --silent live555-latest-md5-new.txt) ]; then echo "::set-output name=available::false"; else echo "::set-output name=available::true"; fi
+  download-changelog:
+    runs-on: ubuntu-latest
+    needs: check-for-new-version
+    steps:
+      - run: echo ${{needs.check-for-new-version.outputs.available}}
+      - name: Download changelog
+        timeout-minutes: 5
+        run: wget http://www.live555.com/liveMedia/public/changelog.txt
