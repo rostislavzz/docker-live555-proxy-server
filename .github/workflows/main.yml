@@ -13,6 +13,8 @@ jobs:
     outputs:
       available: ${{ steps.check-for-new-version.outputs.available }}
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: test
         run: cat live555-latest-md5.txt
       - name: Check for new version
