@@ -32,5 +32,10 @@ jobs:
       - name: Get version
         id: get-version
         run: echo "::set-output name=version::`grep -Eo -m1 '^[[:digit:]]{4}\.[[:digit:]]{2}\.[[:digit:]]{2}[[:alpha:]]?' changelog.txt`"
-      - name: test
-        run: echo ${{steps.get-version.outputs.version}}
+      - name: Commit and push
+        run: |
+          git config --global user.name '${{github.repository_owner}}'
+          git config --global user.email 'rost.shikhov@gmail.com'
+          git commit -am "${{steps.get-version.outputs.version}}"
+          git tag "${{steps.get-version.outputs.version}}"
+          git push --tags
