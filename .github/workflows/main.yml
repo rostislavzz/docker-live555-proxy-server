@@ -16,7 +16,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: test
-        run: curl --silent --no-buffer http://www.live555.com/liveMedia/public/live555-latest-md5.txt
+        run: curl -s -N http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp -s live555-latest-md5.txt && echo "test ok"
       - name: Check for new version
         timeout-minutes: 5
         run: if [ "$(curl --silent --no-buffer http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp --silent live555-latest-md5.txt)" ]; then echo "::set-output name=available::false"; else echo "::set-output name=available::true"; fi
