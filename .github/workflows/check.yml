@@ -2,7 +2,7 @@ name: Check for new version of LIVE555 Media Server
 
 on:
   schedule:
-    - cron: '0 0 * * 1'
+    - cron: '0 0 * * *'
 
 jobs:
   check-for-new-version:
