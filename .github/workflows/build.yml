@@ -6,22 +6,28 @@ on:
       - "*"
 
 jobs:
-  check-for-new-version:
+  build-image-and-push:
     runs-on: ubuntu-latest
     steps:
+      - name: Get version
+        id: get-version
+        run: echo "::set-output name=version::`echo ${{ github.ref }} | grep -Eo -m1 '[[:digit:]]{4}\.[[:digit:]]{2}\.[[:digit:]]{2}[[:alpha:]]?$' -`"
       - name: Setup Docker Buildx
+        if: ${{ steps.get-version.outputs.version }}
         uses: crazy-max/ghaction-docker-buildx@v1
         with:
           version: latest
       - name: Docker Login
+        if: ${{ steps.get-version.outputs.version }}
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
         run: echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
       - name: Docker Build & Push
+        if: ${{ steps.get-version.outputs.version }}
         run: |
           docker buildx build \
             --platform linux/arm/v6,linux/arm/v7,linux/amd64 \
             --tag paradisi/live555-proxy-server:latest \
-            --tag paradisi/live555-proxy-server:${{ github.ref }} \
+            --tag paradisi/live555-proxy-server:${{ steps.get-version.outputs.version }} \
             --push .
