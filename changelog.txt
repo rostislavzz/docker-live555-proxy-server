@@ -1,3 +1,6 @@
+2020.05.13:
+- Made the "MPEG2TransportStreamMultiplexor" segmentation mechanism (used by "HLSSegmenter")
+  more robust in case the Transport Stream PTS is not monotonic non-decreasing.
 2020.04.24:
 - Fixed an apparent bug in "RTSPClient" that was causing it to not always send an
   "Authorization:" header when sending a RTSP "OPTIONS" command.
