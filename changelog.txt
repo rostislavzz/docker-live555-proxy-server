@@ -1,3 +1,16 @@
+Next version, in progress:
+- Added a new filter class "ADTSAudioStreamDiscreteFramer" that prepends ADTS headers to
+  incoming AAC audio frames.  This makes the AAC audio playable (by media players)
+- Updated "openRTSP" to use a "ADTSAudioStreamDiscreteFramer" when outputting a AAC audio
+  stream.  This makes the resulting file playable (by media players).
+- Updated the "LIVE555 HLS Proxy" to support AAC audio tracks (as well as H.264/5 video).
+2020.05.14:
+- Updated "H264or5VideoStreamDiscreteFramer" to add VPS,SPS,PPS NAL units (if known) to
+  the output stream, each time an "access_unit_delimiter" NAL unit is added.
+  This makes it more likely that the Transport Stream segments produced by the
+  "LIVE555 HLS Proxy" will be understandable by a client browser.
+- Added support for H.265 video streams to the "LIVE555 HLS Proxy".  (This has not yet been
+  fully tested.)
 2020.05.13:
 - Made the "MPEG2TransportStreamMultiplexor" segmentation mechanism (used by "HLSSegmenter")
   more robust in case the Transport Stream PTS is not monotonic non-decreasing.
