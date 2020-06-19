@@ -3404,7 +3404,7 @@ Made several changes to the implementation of "ProxyServerMediaSession" (and rel
 - Fixed a minor memory leak in the "createNew()" functions for
   "AVIFileSink" and "QuickTimeFileSink" if the output fid did not get created.
   (Thanks to Mehmet Ozgul for noting this.)
-- Fixed a couple of spelling erros, removed some unnecessary whitespace,
+- Fixed a couple of spelling errors, removed some unnecessary whitespace,
   and updated the address of the FSF in the LGPL preamble (thanks to Erik Hovland).
 
 2008.09.02:
