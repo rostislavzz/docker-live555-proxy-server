@@ -1,3 +1,6 @@
+2020.06.22:
+- Fixed a typo in the previous release that could cause a compilation problem for some
+  developers.  (Thanks to Eric Beuque for reporting this.)
 2020.05.15:
 - Added a new filter class "ADTSAudioStreamDiscreteFramer" that prepends ADTS headers to
   incoming AAC audio frames.  This makes the AAC audio playable (by media players)
