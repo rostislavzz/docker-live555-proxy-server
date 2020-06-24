@@ -1,3 +1,8 @@
+2020.06.23:
+- Moved all definitions of PREFIX from "Makefile.tail" files to "Makefile.head" (so that
+  it can be redefined by a "config.*" file, if desired.
+  Also changed the definition of EXE in "config.mingw" to be ".exe".
+  (Thanks to Eric Beuque for this suggestion.)
 2020.06.22:
 - Fixed a typo in the previous release that could cause a compilation problem for some
   developers.  (Thanks to Eric Beuque for reporting this.)
