@@ -1,3 +1,6 @@
+2020.06.25:
+- Fixed a memory leak in the "sha1()" function (a "EVP_MD_CTX" object was not being deleted).
+  (Thanks to Amir Perlman for reporting this.)
 2020.06.23:
 - Moved all definitions of PREFIX from "Makefile.tail" files to "Makefile.head" (so that
   it can be redefined by a "config.*" file, if desired.
