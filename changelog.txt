@@ -1,3 +1,7 @@
+2020.07.09:
+- Fixed a potential buffer overflow bug in the server handling of a RTSP "PLAY" command,
+  when the command specifies seeking by absolute time.
+  (Thank to Xiaobo Xiang for reporting this.)
 2020.06.25:
 - Fixed a memory leak in the "sha1()" function (a "EVP_MD_CTX" object was not being deleted).
   (Thanks to Amir Perlman for reporting this.)
