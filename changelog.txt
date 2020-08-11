@@ -1,3 +1,8 @@
+2020.08.11:
+- Fixed another bug in the handling of seeking within Matroska files.
+2020.08.10:
+- Fixed a bug in the handling of seeking within Matroska files.
+  (Thanks to Jim Ham for reporting this problem.)
 2020.08.09:
 - Changed the parameter signature of the "RawVideoRTPSink" constructor and "createNew()"
   functions so that the "width" parameter comes before the "height" parameter.  This order
