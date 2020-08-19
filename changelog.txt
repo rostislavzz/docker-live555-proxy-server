@@ -1,3 +1,7 @@
+2020.08.18:
+- In "MPEG2TransportStreamFromESSource.cpp", changed the name of the constant LOW_WATER_MARK
+  to TS_FROM_ES_LOW_WATER_MARK, and "#ifndef"d it, so that, if you wish, you can redefine it
+  at compile time.
 2020.08.12:
 - Fixed a bug in the handling of pausing, when streaming from (multi-track) Matroska files.
 2020.08.11:
