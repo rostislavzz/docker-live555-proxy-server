@@ -1,3 +1,6 @@
+2020.08.19:
+- Fixed a bug in "QuickTimeFileSink" that could cause malformed "esds" atoms to be
+  generated.  (Thanks to Chris Paucar for reporting this issue.)
 2020.08.18:
 - In "MPEG2TransportStreamFromESSource.cpp", changed the name of the constant LOW_WATER_MARK
   to TS_FROM_ES_LOW_WATER_MARK, and "#ifndef"d it, so that, if you wish, you can redefine it
