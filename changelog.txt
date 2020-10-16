@@ -1,3 +1,6 @@
+Next version, in progress:
+- Updated "TLSState::setup()" to use "TLS_client_method()" instead of the (deprecated)
+  "SSLv23_client_method()".
 2020.08.19:
 - Fixed a bug in "QuickTimeFileSink" that could cause malformed "esds" atoms to be
   generated.  (Thanks to Chris Paucar for reporting this issue.)
