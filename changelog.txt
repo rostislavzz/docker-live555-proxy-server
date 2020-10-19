@@ -1,3 +1,6 @@
+Next version, in progress:
+- Added the LGPLv3 header to some files (where it had accidentally been omitted before).
+  (Thanks to Sebastian Ramacher for noting this.)
 2020.10.16:
 - Changed "TLSState::read()" to treat any "SSL_read()" result of <=0 as if the
   TLS connection has closed (unless the error was SSL_ERROR_WANT_READ).
