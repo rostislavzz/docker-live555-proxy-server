@@ -1,4 +1,6 @@
-Next version, in progress:
+2020.11.03:
+- Updated the "LIVE555 HLS Proxy" application to output the liveMedia version number
+  when starting.
 - Added the LGPLv3 header to some files (where it had accidentally been omitted before).
   (Thanks to Sebastian Ramacher for noting this.)
 2020.10.16:
