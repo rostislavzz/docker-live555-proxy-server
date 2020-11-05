@@ -1,3 +1,8 @@
+Next version, in progress:
+- Changed the HTTP version used in our RTSP-over-HTTP implementation (for both clients and
+  servers) from HTTP/1.1 back to HTTP/1.0.
+  (This was a suggest from David Yang, who noted that HTTP/1.1 would require that we
+   implement "chunked" transfer-coding.)
 2020.11.03:
 - Updated the "LIVE555 HLS Proxy" application to output the liveMedia version number
   when starting.
