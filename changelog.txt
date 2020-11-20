@@ -1,3 +1,10 @@
+2020.11.20:
+- Renamed the existing 'macosx' config file to 'config.macosx-catalina', and created a new
+  config file 'config.macosx-bigsur' that will work with Apple's new OS "MacOS Big Sur".
+2020.11.19:
+- In "liveMedia/TLSState.cpp", changed the call to "TLS_client_method()" back to
+  "SSLv23_client_method()", because "TLS_client_method()" isn't defined for SSH
+  in some systems (e.g., Mac OS)
 2020.11.05:
 - Changed the HTTP version used in our RTSP-over-HTTP implementation (for both clients and
   servers) from HTTP/1.1 back to HTTP/1.0.
