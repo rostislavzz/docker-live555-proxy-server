@@ -1,9 +1,15 @@
+2020.11.22:
+- Updated the 'groupsock' "AddressString" class to use the standard "inet_ntop()" function
+  (and also to work for IPv6 addresses once we support them).
+- Updated the "RTSPServer::rtspURLPrefix()" (and thus "RTSPServer::rtspURL()") functions to
+  enclose the IP address literal in square brackets [] if the address is IPv6 (which it
+  currently won't be, because we don't yet support IPv6.)
 2020.11.21:
 - Removed the use of "our_inet_addr()" (and "inet_addr()") functions, and replaced them with
   calls to (the more up-to-date) "inet_pton()" function.
 - Updated the "parseRTSPURL()" function to recognize IP address literals (in "rtsp://" URLs)
   that are enclosed in square brackets [].  (This is how IPv6 address literals are included in
-  URs, although we don't yet support IPv6.)
+  URLs, although we don't yet support IPv6.)
 2020.11.20:
 - Renamed the existing 'macosx' config file to 'config.macosx-catalina', and created a new
   config file 'config.macosx-bigsur' that will work with Apple's new OS "MacOS Big Sur".
