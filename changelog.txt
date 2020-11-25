@@ -1,3 +1,6 @@
+Next version, in progress:
+- Added some basic logging code (from Jim Ham) to "RTSPServer.cpp".
+  This code is #ifdef'd out by default.  To enable it, define LOG_RTSPSERVER_ACCESS
 2020.11.22:
 - Updated the 'groupsock' "AddressString" class to use the standard "inet_ntop()" function
   (and also to work for IPv6 addresses once we support them).
