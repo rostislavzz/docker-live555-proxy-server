@@ -1,4 +1,7 @@
-Next version, in progress:
+2020.11.25:
+- Updated readSocket(), Groupsock::handleRead(), and RTPInterface::handleRead()
+  (and related functions) to take/return a "sockaddr_storage" (rather than a "sockaddr_in"),
+  to prepare for eventual support for IPv6.
 - Added some basic logging code (from Jim Ham) to "RTSPServer.cpp".
   This code is #ifdef'd out by default.  To enable it, define LOG_RTSPSERVER_ACCESS
 2020.11.22:
