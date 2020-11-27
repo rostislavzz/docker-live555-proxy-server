@@ -1,3 +1,10 @@
+Next version, in progress:
+- Fixed some non-portable code (not buildable on some Linux versions) in
+  "groupsock/GroupsockHelper.cpp" that was accidentally introduced in version 2020.11.25.
+  (Thanks to Olivier Binda for reporting this.)
+2020.11.26:
+- We now use a "struct sockaddr_storage" rather than a "struct sockaddr_in" for the
+  'client address' field in the ("GenericMediaServer" and "RTSPServer") "ClientSession" class.
 2020.11.25:
 - Updated readSocket(), Groupsock::handleRead(), and RTPInterface::handleRead()
   (and related functions) to take/return a "sockaddr_storage" (rather than a "sockaddr_in"),
