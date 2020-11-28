@@ -1,4 +1,4 @@
-Next version, in progress:
+2020.11.27:
 - Fixed some non-portable code (not buildable on some Linux versions) in
   "groupsock/GroupsockHelper.cpp" that was accidentally introduced in version 2020.11.25.
   (Thanks to Olivier Binda for reporting this.)
