@@ -1,3 +1,6 @@
+2020.11.28:
+- Updated the packet output routines in the "groupsock" library to use "sockaddr_storage",
+  in preparation for eventual support for IPv6
 2020.11.27:
 - Fixed some non-portable code (not buildable on some Linux versions) in
   "groupsock/GroupsockHelper.cpp" that was accidentally introduced in version 2020.11.25.
