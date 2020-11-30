@@ -1,3 +1,6 @@
+2020.11.29:
+- Updated the 'groupsock' "GroupEId" implementation (but not yet the interface) to
+  use "sockaddr_storage", in preparation for eventual support for IPv6
 2020.11.28:
 - Updated the packet output routines in the "groupsock" library to use "sockaddr_storage",
   in preparation for eventual support for IPv6
