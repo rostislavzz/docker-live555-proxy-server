@@ -1,6 +1,12 @@
+2020.12.01:
+- More cleanup of the "groupsock" and "liveMedia" libraries,
+  in more preparation for eventual support for IPv6.
+2020.11.30:
+- Updated "RTSPServer.cpp" again to replace another "sockaddr_in" with "sockaddr_storage",
+  in more preparation for eventual support for IPv6.
 2020.11.29:
 - Updated the 'groupsock' "GroupEId" implementation (but not yet the interface) to
-  use "sockaddr_storage", in preparation for eventual support for IPv6
+  use "sockaddr_storage", in preparation for eventual support for IPv6.
 2020.11.28:
 - Updated the packet output routines in the "groupsock" library to use "sockaddr_storage",
   in preparation for eventual support for IPv6
