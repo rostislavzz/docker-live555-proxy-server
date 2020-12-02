@@ -1,3 +1,6 @@
+Next version, in progress:
+- Updated the "ServerMediaSubsession" "getStreamParameters()" virtual function to
+  take "struct sockadd_storage" as parameters, in preparation for eventual support for IPv6.
 2020.12.01:
 - More cleanup of the "groupsock" and "liveMedia" libraries,
   in more preparation for eventual support for IPv6.
