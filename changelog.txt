@@ -1,4 +1,7 @@
 Next version, in progress:
+- Updated "AddressPortLookupTable"s member functions to take "struct sockaddr_storage"
+  as parameter, in more preparation for eventual support for IPv6.
+2020.12.02:
 - Updated the "ServerMediaSubsession" "getStreamParameters()" virtual function to
   take "struct sockadd_storage" as parameters, in preparation for eventual support for IPv6.
 2020.12.01:
