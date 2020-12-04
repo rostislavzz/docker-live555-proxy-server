@@ -1,4 +1,7 @@
-Next version, in progress:
+2020.12.04:
+- Updated "RTCPInstance::(un)setSpecificRRHandler()" to take "struct sockaddr_storage"
+  as parameter, in more preparation for eventual support for IPv6.
+2020.12.03:
 - Updated "AddressPortLookupTable"s member functions to take "struct sockaddr_storage"
   as parameter, in more preparation for eventual support for IPv6.
 2020.12.02:
