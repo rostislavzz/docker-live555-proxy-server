@@ -1,3 +1,6 @@
+Next version, in progress:
+- Changed "fServerAddress" in "RTSPClient" and "SIPClient" to use a "struct sockaddr_storage",
+  in preparation for eventual support for IPv6.
 2020.12.04:
 - Updated "RTCPInstance::(un)setSpecificRRHandler()" to take "struct sockaddr_storage"
   as parameter, in more preparation for eventual support for IPv6.
