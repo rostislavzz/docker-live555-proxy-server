@@ -1,6 +1,10 @@
 Next version, in progress:
+- Allow for parsing (and generating) "IP IP6" in SDP descriptions,
+  for when we later support IPv6.
+2020.12.05:
 - Changed "fServerAddress" in "RTSPClient" and "SIPClient" to use a "struct sockaddr_storage",
   in preparation for eventual support for IPv6.
+- Performed the annual update of the copyright years near the start of each file
 2020.12.04:
 - Updated "RTCPInstance::(un)setSpecificRRHandler()" to take "struct sockaddr_storage"
   as parameter, in more preparation for eventual support for IPv6.
