@@ -1,4 +1,7 @@
 Next version, in progress:
+- Updated the interface to the 'groupsock' "GroupEId" class to use "struct sockaddr_storage",
+  in preparation for eventual support for IPv6.
+2020.12.06:
 - Allow for parsing (and generating) "IP IP6" in SDP descriptions,
   for when we later support IPv6.
 2020.12.05:
