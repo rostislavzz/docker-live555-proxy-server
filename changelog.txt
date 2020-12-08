@@ -1,4 +1,8 @@
 Next version, in progress:
+- Updated the "Groupsock::addDestination()" and "Groupsock::changeDestinationParameters()"
+  functions to take a "struct sockaddr_storage" as parameter, in preparation for
+  eventual support for IPv6.
+2020.12.07:
 - Updated the interface to the 'groupsock' "GroupEId" class to use "struct sockaddr_storage",
   in preparation for eventual support for IPv6.
 2020.12.06:
