@@ -1,4 +1,4 @@
-Next version, in progress:
+2020.12.08:
 - Updated the "Groupsock::addDestination()" and "Groupsock::changeDestinationParameters()"
   functions to take a "struct sockaddr_storage" as parameter, in preparation for
   eventual support for IPv6.
