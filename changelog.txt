@@ -1,3 +1,15 @@
+Next version, in progress:
+- Updated the "Groupsock" constructors to take "struct sockaddr_storage const&"s as
+  parameter, in preparation for eventual support for IPv6.
+  (Ditto for the "createGroupsock()" virtual in "OnDemandServerMediaSubsession"
+   and its subclasses.)
+- Updated "Groupsock::groupAddress()" and "Groupsock::sourceFilterAddress()" to return
+  a "struct sockaddr_storage&", in preparation for eventual support for IPv6.  
+2020.12.09:
+- Cleaned up the "groupsock" library by removing a lot of code that was used only for the
+  old "UDP multicast tunneling" mechanism (which would not work for IPv6 addresses anyway).
+- Fixed a bug (accidentally introduced in the previous release) that could cause clients'
+  RTCP "RR" packets to not get sent properly.
 2020.12.08:
 - Updated the "Groupsock::addDestination()" and "Groupsock::changeDestinationParameters()"
   functions to take a "struct sockaddr_storage" as parameter, in preparation for
