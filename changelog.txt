@@ -1,4 +1,9 @@
 Next version, in progress:
+- Updated the "MediaSession" "fSourceFilterAddr" field and "connectionEndpointAddress()"
+  and "setDestinations()" member functions to use a "struct sockaddr_storage",
+  in preparation for eventual support for IPv6.
+- More cleanup of the "groupsock" library.
+2020.12.10:
 - Updated the "Groupsock" constructors to take "struct sockaddr_storage const&"s as
   parameter, in preparation for eventual support for IPv6.
   (Ditto for the "createGroupsock()" virtual in "OnDemandServerMediaSubsession"
