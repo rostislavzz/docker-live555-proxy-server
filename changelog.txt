@@ -1,4 +1,4 @@
-Next version, in progress:
+2020.12.11:
 - Updated the "MediaSession" "fSourceFilterAddr" field and "connectionEndpointAddress()"
   and "setDestinations()" member functions to use a "struct sockaddr_storage",
   in preparation for eventual support for IPv6.
