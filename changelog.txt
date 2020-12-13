@@ -1,3 +1,10 @@
+2020.12.13:
+- Fixed a bug accidentally introduced in the previous release (Linux distributions don't
+  include the field "ss_len" in their definition of "struct sockaddr_storage").
+  (Thanks to Scott Robinson for reporting this.)
+2020.12.12:
+- Updated the "groupsock" "socketJoin/LeaveGroup()" functions to take
+  "struct sockaddr_storage const&" as parameter, in preparation for eventual support for IPv6.
 2020.12.11:
 - Updated the "MediaSession" "fSourceFilterAddr" field and "connectionEndpointAddress()"
   and "setDestinations()" member functions to use a "struct sockaddr_storage",
