@@ -33,7 +33,7 @@ jobs:
           wget -O live555-latest-md5.txt http://www.live555.com/liveMedia/public/live555-latest-md5.txt
       - name: Get version
         id: get-version
-        if: ${{ steps.check-for-new-version.outputs.available }}
+        if: ${{ steps.check-for-new-version.outputs.available == true }}
         run: echo "::set-output name=version::`grep -Eo -m1 '^[[:digit:]]{4}\.[[:digit:]]{2}\.[[:digit:]]{2}[[:alpha:]]?' changelog.txt`"
       - name: Commit, tag and push
         if: ${{ steps.get-version.outputs.version }}
