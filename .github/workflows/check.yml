@@ -26,6 +26,7 @@ jobs:
         if: ${{ steps.check-for-new-version.outputs.available }}
         timeout-minutes: 1
         run: |
+          echo "::debug::steps.check-for-new-version.outputs.available"
           wget -O changelog.txt http://www.live555.com/liveMedia/public/changelog.txt
           wget -O live555-latest-md5.txt http://www.live555.com/liveMedia/public/live555-latest-md5.txt
       - name: Get version
