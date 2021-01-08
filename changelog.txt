@@ -1,3 +1,12 @@
+2021.01.01:
+- Updated the 'groupsock' "setupDatagramSocket()" and "setupStreamSocket()" to take
+  an 'address family' parameter, in preparation for eventual support for IPv6.
+2020.12.23:
+- Updated the implementation of "NetAddressList()" to properly return an IPv6 address
+  if the hostname being looked up is IPv6 only.  (This is in preparation for eventual
+  support for IUPv6.)
+- More minor changes to the "groupsock" library in preparation for eventual support for IPv6.
+  Note that the type name "netAddressBits" is no longer defined; use "ipv4AddressBits" instead.
 2020.12.13:
 - Fixed a bug accidentally introduced in the previous release (Linux distributions don't
   include the field "ss_len" in their definition of "struct sockaddr_storage").
