@@ -18,19 +18,19 @@ jobs:
         run: |
           if [ $(curl -s -N http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp -s live555-latest-md5.txt) ];
           then
-            echo "::set-output name=available::false"
+            echo "::set-output name=available::0"
           else
-            echo "::set-output name=available::true"
+            echo "::set-output name=available::1"
           fi
       - name: Download changelog
-        if: ${{ steps.check-for-new-version.outputs.available == true }}
+        if: ${{ steps.check-for-new-version.outputs.available == 1 }}
         timeout-minutes: 1
         run: |
           wget -O changelog.txt http://www.live555.com/liveMedia/public/changelog.txt
           wget -O live555-latest-md5.txt http://www.live555.com/liveMedia/public/live555-latest-md5.txt
       - name: Get version
         id: get-version
-        if: ${{ steps.check-for-new-version.outputs.available == true }}
+        if: ${{ steps.check-for-new-version.outputs.available == 1 }}
         run: echo "::set-output name=version::`grep -Eo -m1 '^[[:digit:]]{4}\.[[:digit:]]{2}\.[[:digit:]]{2}[[:alpha:]]?' changelog.txt`"
       - name: Commit, tag and push
         if: ${{ steps.get-version.outputs.version }}
