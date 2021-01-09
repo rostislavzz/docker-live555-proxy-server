@@ -1,3 +1,13 @@
+2021.01.09:
+- Updated the constructor for the 'groupsock' "NetAddressList" class to take an (optional)
+  'address family' parameter.  This can be used to lookup specifically an IPv4 or IPv6 address
+  for a given host name.  (In 'liveMedia', updated "MediaSession.cpp" to use this mechanism
+  when parsing a SDP description.)
+- Updated the "ServerMediaSession::generateSDPDescription()" function to take an
+  'address family' parameter, so we can generate proper SDP (specifying the proper IP address
+  family) even for connections from IPv6 clients.  Updated the
+  "RTSPServer::RTSPClientConnection" constructor accordingly, to record the address family
+  of the connection, for subsequent use when calling "generateSDPDescription()".
 2021.01.01:
 - Updated the 'groupsock' "setupDatagramSocket()" and "setupStreamSocket()" to take
   an 'address family' parameter, in preparation for eventual support for IPv6.
