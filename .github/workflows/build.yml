@@ -9,6 +9,8 @@ jobs:
   build-image-and-push:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Get version
         id: get-version
         run: echo "::set-output name=version::`echo ${{ github.ref }} | grep -Eo -m1 '[[:digit:]]{4}\.[[:digit:]]{2}\.[[:digit:]]{2}[[:alpha:]]?$' -`"
@@ -21,11 +23,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      - name: Docker Build & Push
-        if: ${{ steps.get-version.outputs.version }}
-        run: |
-          docker buildx build \
-            --platform linux/arm/v6,linux/arm/v7,linux/amd64 \
-            --tag paradisi/live555-proxy-server:latest \
-            --tag paradisi/live555-proxy-server:${{ steps.get-version.outputs.version }} \
-            --push .
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+          push: true
+          tags: |
+           paradisi/live555-proxy-server:latest
+           paradisi/live555-proxy-server:${{ steps.get-version.outputs.version }}
