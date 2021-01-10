@@ -40,7 +40,9 @@ services:
 docker run -d \
   --name=live555-proxy-server \
   --net=host \
+  -p 554:554 \
+  -p 8554:8554 \
   --restart unless-stopped \
-  paradisi/live555-proxy-server
+  paradisi/live555-proxy-server \
   -v <url1> <url2>
   ```
