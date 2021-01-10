@@ -1,11 +1,13 @@
 FROM alpine AS builder
-
-RUN apk add --update --no-cache  build-base openssl-dev
+RUN apk add --update --no-cache build-base openssl-dev
 
 # Get LIVE555 Media Server source code
 RUN cd /tmp/ && \
   wget http://www.live555.com/liveMedia/public/live555-latest.tar.gz && \
   tar zxf live555-latest.tar.gz && rm live555-latest.tar.gz
+
+# Apply OutPacketBuffer::maxSize patch
+RUN patch /tmp/live/proxyServer/live555ProxyServer.cpp < live555ProxyServer.patch
 
 # Compile LIVE555 Proxy Server
 RUN cd /tmp/live && \
