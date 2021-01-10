@@ -15,7 +15,8 @@ The key feature of a proxy server is that it reads each 'back-end' stream only o
 Here are some example snippets to help you get started creating a container.
 
 **docker-compose**
-```version: '2'
+```
+version: '2'
 services:
   live555-proxy-server:
     image: paradisi/live555-proxy-server
@@ -29,7 +30,8 @@ services:
 ```
 
 **docker cli**
-```docker run -d \
+```
+docker run -d \
   --name=live555-proxy-server \
   --net=host \
   --restart unless-stopped \
