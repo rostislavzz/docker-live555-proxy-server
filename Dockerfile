@@ -19,4 +19,4 @@ COPY --from=builder /usr/local/bin/live555ProxyServer /usr/local/bin/
 EXPOSE 554
 EXPOSE 8554
 
-CMD ["live555ProxyServer"]
+ENTRYPOINT ["live555ProxyServer"]
