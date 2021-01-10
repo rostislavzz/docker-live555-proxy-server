@@ -7,7 +7,8 @@ RUN cd /tmp/ && \
   tar zxf live555-latest.tar.gz && rm live555-latest.tar.gz
 
 # Apply OutPacketBuffer::maxSize patch
-RUN patch /tmp/live/proxyServer/live555ProxyServer.cpp < live555ProxyServer.patch
+COPY live555ProxyServer.patch /tmp
+RUN patch /tmp/live/proxyServer/live555ProxyServer.cpp < /tmp/live555ProxyServer.patch
 
 # Compile LIVE555 Proxy Server
 RUN cd /tmp/live && \
