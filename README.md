@@ -1,6 +1,4 @@
-# LIVE555 Proxy Server for Docker
-Automated build of [LIVE555 Proxy Server](http://www.live555.com/proxyServer/).
-
+# LIVE555 Proxy Server
 The "LIVE555 Proxy Server" is a unicast RTSP server - built from the ["LIVE555 Streaming Media" software](http://www.live555.com/liveMedia/) - that acts as a 'proxy' for one or more 'back-end' unicast or multicast RTSP/RTP streams (i.e., served by other server(s)).
 
 The key feature of a proxy server is that it reads each 'back-end' stream only once, regardless of how many separate clients are streaming from the proxy server. This makes the proxy server ideal, for example, for streaming from a RTSP-enabled video camera (which might not be able to handle more than one connection at a time).
@@ -11,8 +9,12 @@ The key feature of a proxy server is that it reads each 'back-end' stream only o
                                                       --> [RTSP clientN]
 ```
 
+# LIVE555 Proxy Server for Docker
+Automated build of [LIVE555 Proxy Server](http://www.live555.com/proxyServer/).  
+This build applies patch to increase ```OutPacketBuffer::maxSize``` to 168780 bytes (100000 bytes default).
+
 # Usage
-Provide the RTSP urls to your Docker container as the command property.
+Provide the RTSP urls to your Docker container as the ```command``` property.
 
 A single back-end stream will be proxied to the endpoint ```rtsp://hostname:[554|8554]/proxyStream```
 
@@ -31,7 +33,7 @@ services:
     ports:
       - 554:554
       - 8554:8554
-    command: -v <url1> <url2>
+    command: -v <rtsp-url-1> ... <rtsp-url-n>
     restart: unless-stopped
 ```
 
@@ -44,5 +46,5 @@ docker run -d \
   -p 8554:8554 \
   --restart unless-stopped \
   paradisi/live555-proxy-server \
-  -v <url1> <url2>
+  -v <rtsp-url-1> ... <rtsp-url-n>
   ```
