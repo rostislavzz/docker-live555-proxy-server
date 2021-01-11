@@ -11,7 +11,7 @@ The key feature of a proxy server is that it reads each 'back-end' stream only o
 
 # LIVE555 Proxy Server for Docker
 Automated build of [LIVE555 Proxy Server](http://www.live555.com/proxyServer/).  
-This build applies patch to increase ```OutPacketBuffer::maxSize``` to 168780 bytes (100000 bytes default).
+This build applies patch to increase ```OutPacketBuffer::maxSize``` to 169872 bytes (100000 bytes default).
 
 # Usage
 Provide the RTSP urls to your Docker container as the ```command``` property.
