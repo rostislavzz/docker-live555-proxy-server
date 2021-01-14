@@ -1,3 +1,5 @@
+2020.01.13:
+- Fixed a memory leak in the "MIKEYPayload" class.  (Thanks to Micha Kalfon for reporting this.)
 2021.01.09:
 - Updated the constructor for the 'groupsock' "NetAddressList" class to take an (optional)
   'address family' parameter.  This can be used to lookup specifically an IPv4 or IPv6 address
