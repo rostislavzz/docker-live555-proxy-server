@@ -1,3 +1,11 @@
+2020.01.14:
+- Changed the virtual function "GenericMediaServer::lookupServerMediaSession()" to be
+  asynchronous, to allow the actual lookup to be performed within the event loop, in response
+  to an event.  "lookupServerMediaSession()" now takes a 'completion function' and
+  'completion client data' as parameter.  Once the lookup is done, the completion function
+  is called - with the 'completion client data' and looked-up "ServerMediaSession" object
+  as parameter.
+  (Thanks to Mit Shan for providing the use case that motivated this change.)
 2020.01.13:
 - Fixed a memory leak in the "MIKEYPayload" class.  (Thanks to Micha Kalfon for reporting this.)
 2021.01.09:
