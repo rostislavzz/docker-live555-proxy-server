@@ -1,3 +1,5 @@
+2020.01.16:
+- Fixed minor bug in "RawVideoRTPSource".  (Thanks to Yahia Benmoussa.)
 2020.01.14:
 - Changed the virtual function "GenericMediaServer::lookupServerMediaSession()" to be
   asynchronous, to allow the actual lookup to be performed within the event loop, in response
