@@ -1,3 +1,6 @@
+2020.01.17:
+- In the "groupsock" library, changed the signature of "nullAddress()" to take an optional 'address family' parameter.
+- Removed obsolete parameters "fServerAddressForSDP" and "fPortNumForSDP" (and member function "setServerAddressAndPortForSDP()") from "ServerMediaSubsession".
 2020.01.16:
 - Fixed minor bug in "RawVideoRTPSource".  (Thanks to Yahia Benmoussa.)
 2020.01.14:
