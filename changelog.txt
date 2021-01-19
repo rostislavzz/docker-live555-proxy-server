@@ -1,9 +1,15 @@
-2020.01.17:
+2021.01.18:
+- Changed the virtual function "ServerMediaSession::sdpLines()" to take an 'address family'
+  parameter.  This lets us ensure (in "OnDemandServerMediaSubsession") that generated SDP
+  descriptions for unicast streams have the correct IP address family string ("IP4" or "IP6").
+- Changed the "GenericMediaServer::setUpOurSocket()" function to take a 'domain'
+  (AF_INET or AF_INET6) parameter, in preparation for eventual support for IPv6.
+2021.01.17:
 - In the "groupsock" library, changed the signature of "nullAddress()" to take an optional 'address family' parameter.
 - Removed obsolete parameters "fServerAddressForSDP" and "fPortNumForSDP" (and member function "setServerAddressAndPortForSDP()") from "ServerMediaSubsession".
-2020.01.16:
+2021.01.16:
 - Fixed minor bug in "RawVideoRTPSource".  (Thanks to Yahia Benmoussa.)
-2020.01.14:
+2021.01.14:
 - Changed the virtual function "GenericMediaServer::lookupServerMediaSession()" to be
   asynchronous, to allow the actual lookup to be performed within the event loop, in response
   to an event.  "lookupServerMediaSession()" now takes a 'completion function' and
@@ -11,7 +17,7 @@
   is called - with the 'completion client data' and looked-up "ServerMediaSession" object
   as parameter.
   (Thanks to Mit Shan for providing the use case that motivated this change.)
-2020.01.13:
+2021.01.13:
 - Fixed a memory leak in the "MIKEYPayload" class.  (Thanks to Micha Kalfon for reporting this.)
 2021.01.09:
 - Updated the constructor for the 'groupsock' "NetAddressList" class to take an (optional)
