@@ -1,3 +1,11 @@
+2021.01.21:
+- Updated the "GenericMediaServer" class (and its subclasses, including "RTSPServer" and
+  "DynamicRTSPServer") to use two main server sockets: one for handling connections over IPv4;
+  the other for handling connections over IPv6.  (Connections over IPv6 might not be fully
+  working yet.)
+- Changed the "groupsock" "getSourcePort()" function to take an extra "domain"
+  (AF_INET or AF_INET6) parameter.  (This is needed in case the function's implementation
+  needs to call "bind()".)
 2021.01.20:
 - Updated the implementations of several helper functions in "groupsock/GroupsockHelper.cpp"
   to work with IPv6 (once we support it).
