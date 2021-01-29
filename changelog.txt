@@ -1,3 +1,6 @@
+2021.01.28:
+- Fixed the "config.macosx-no-openssl" configuration file (it had been accidentally trying to
+  link with SSL and crypto libraries).
 2021.01.21:
 - Updated the "GenericMediaServer" class (and its subclasses, including "RTSPServer" and
   "DynamicRTSPServer") to use two main server sockets: one for handling connections over IPv4;
