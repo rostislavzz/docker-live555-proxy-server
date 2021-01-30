@@ -1,3 +1,7 @@
+2021.01.29:
+- Renamed the 'groupsock' function "ourIPAddress()" to "ourIPv4Address()".
+  (We also define a function "ourIPv6Address()", though for now this just returns a null
+   IPv6 address.)
 2021.01.28:
 - Fixed the "config.macosx-no-openssl" configuration file (it had been accidentally trying to
   link with SSL and crypto libraries).
