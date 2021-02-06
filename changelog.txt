@@ -1,3 +1,16 @@
+2021.02.05:
+- Updated the mechanism by which we figure out our (IPv4 and/or IPv6) address.
+  Instead of the 'multicast loopback' mechanism, we use "getifaddrs()".
+  (If "getifaddrs()" doesn't work, then we fall back to the
+  "lookup host name"->"resolve host name" method, as we did before.)
+  If "getifaddrs()" is not defined on your system (or if you don't want to use it), then
+  you can disable its use by compiling with NO_GETIFADDRS defined.
+- Updated "RTSPServer::rtspURL()" (and "RTSPServer::rtspURLPrefix()") to take an optional
+  parameter "useIPv6" (default value: False).  If True, the returned "rtsp://" URL (or prefix)
+  uses our IPv6 address, rather than our IPv4 address.
+  (We also defined shortcut functions "ipv4rtspURL(Prefix)()" and "ipv6rtspURL(Prefix)()"
+   that call the above functions.)
+- Fixed a bug in the 'groupsock' "addressIsNull()" function for IPv6 addresses.
 2021.01.29:
 - Renamed the 'groupsock' function "ourIPAddress()" to "ourIPv4Address()".
   (We also define a function "ourIPv6Address()", though for now this just returns a null
