@@ -1,3 +1,6 @@
+2021.02.09:
+- Fixed a bug in "groupsock/GroupsockHelper.cpp" that could cause a compilation error on
+  some systems where "sa_len" is not defined in "struct sockaddr".
 2021.02.05:
 - Updated the mechanism by which we figure out our (IPv4 and/or IPv6) address.
   Instead of the 'multicast loopback' mechanism, we use "getifaddrs()".
