@@ -1,3 +1,9 @@
+2021.02.10:
+- Fixed a bug in "GenericMediaServer" that could potentially cause infinite recursion in the
+  "live555 Media Server" application.  (This had earlier been fixed in version 2019.09.30,
+  but had accidentally been reintroduced into a recent revision.)
+- Before binding to IPv6 sockets, set the IPV6_V6ONLY flag set to 1, so that we can have
+  an IPv4 socket and an IPv6 socket bound to the same port.
 2021.02.09:
 - Fixed a bug in "groupsock/GroupsockHelper.cpp" that could cause a compilation error on
   some systems where "sa_len" is not defined in "struct sockaddr".
