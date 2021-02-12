@@ -1,3 +1,7 @@
+2021.02.11:
+- Updated the "live555 Media Server" and "testOnDemandRTSPServer" applications to display both
+  IPv4 and IPv6 RTSP URLs when starting (or just an IPv4 RTSP URL if the system is IPv4-only,
+  or just an IPv6 RTSP URL if the system is IPv6-only).
 2021.02.10:
 - Fixed a bug in "GenericMediaServer" that could potentially cause infinite recursion in the
   "live555 Media Server" application.  (This had earlier been fixed in version 2019.09.30,
