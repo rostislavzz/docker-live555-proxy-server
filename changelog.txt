@@ -1,3 +1,11 @@
+Next version, in progress:
+- Updated the various RTSP server applications in "testProgs" to use a common routine
+  "announceURL()" (implemented in "announceURL.cpp") to display the IPv4 and/or IPv6 "rtsp://"
+  URLs of the stream.
+- Updated the "testMP3Streamer", "testMP3Receiver", "testMPEG1or2AudioVideoStreamer",
+  "testMPEG1or2VideoStreamer", and "testMPEG2TransportStreamer" demo applications to
+  (optionally) stream using IPv6 multicast instead of IPv4 multicast.
+  (To enable this, uncomment the line that #defines USE_IPV6_MULTICAST)
 2021.02.11:
 - Updated the "live555 Media Server" and "testOnDemandRTSPServer" applications to display both
   IPv4 and IPv6 RTSP URLs when starting (or just an IPv4 RTSP URL if the system is IPv4-only,
