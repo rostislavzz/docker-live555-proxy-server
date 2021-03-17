@@ -1,3 +1,15 @@
+2021.03.16:
+- Fixed a bug in the implementation of "OnDemandServerMediaSubsession" that could cause a
+  RTSP server to crash - for certain "OnDemandServerMediaSubsession" subclasses - if it is
+  accessed by a malicious RTSP client.  If you have a RTSP server that uses one or more of
+  the following "OnDemandServerMediaSubsession" subclasses:
+      AC3AudioFileServerMediaSubsession
+      ADTSAudioFileServerMediaSubsession
+      AMRAudioFileServerMediaSubsession
+  then you should upgrade to this version of the code ASAP, as this is a potential security
+  vulnerability.  (Note, however, that the "DynamicRTSPServer" code used by the
+  "LIVE555 Media Server" is not vulnerable to this bug.)
+  (Thanks to Zhao Jiaxu for reporting this bug.)
 2021.03.15:
 - Updated the various RTSP server applications in "testProgs" to use a common routine
   "announceURL()" (implemented in "announceURL.cpp") to display the IPv4 and/or IPv6 "rtsp://"
