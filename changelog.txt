@@ -1,3 +1,6 @@
+2021.03.17:
+- Removed extraneous code from "MPEG2TransportStreamAccumulator.hh".  (Also, include that
+  header file in "liveMedia.hh".)
 2021.03.16:
 - Fixed a bug in the implementation of "OnDemandServerMediaSubsession" that could cause a
   RTSP server to crash - for certain "OnDemandServerMediaSubsession" subclasses - if it is
