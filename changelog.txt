@@ -1,3 +1,8 @@
+2021.03.22:
+- Updated the "BasicUDPSource" class to reimplement the "maxFrameSize()" virtual function.
+  This will make "StreamSource" subclasses work properly when fed from "BasicUDPSource"s,
+  by telling the "StreamSource" to read as much data as possible from each incoming datagram.
+  (Thanks to Josh Thorson for discovering this.)
 2021.03.17:
 - Removed extraneous code from "MPEG2TransportStreamAccumulator.hh".  (Also, include that
   header file in "liveMedia.hh".)
