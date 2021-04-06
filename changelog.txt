@@ -1,3 +1,9 @@
+Next version, in progress:
+- Fixed a bad #define in "liveMedia/include/MPEG2TransportStreamAccumulator.hh"
+2021.04.05:
+- Updated "groupsock/GroupsockHelper.cpp" to cast the 4th argument of various calls to
+  "setsockopt()" to "(const char *)" to make MSVC happy.
+  (Thanks to Josh Thorson for suggesting this.)
 2021.03.22:
 - Updated the "BasicUDPSource" class to reimplement the "maxFrameSize()" virtual function.
   This will make "StreamSource" subclasses work properly when fed from "BasicUDPSource"s,
