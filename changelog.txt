@@ -1,4 +1,4 @@
-Next version, in progress:
+2021.04.06:
 - Fixed a bad #define in "liveMedia/include/MPEG2TransportStreamAccumulator.hh"
 2021.04.05:
 - Updated "groupsock/GroupsockHelper.cpp" to cast the 4th argument of various calls to
