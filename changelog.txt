@@ -1,3 +1,6 @@
+2021.05.03:
+- Updated the code for "getOurIPAddresses()" to check that "p->ifa_addr" is not NULL before
+  we try dereferencing it.  (Thanks to Thore Mehr for noting this.)
 2021.04.06:
 - Fixed a bad #define in "liveMedia/include/MPEG2TransportStreamAccumulator.hh"
 2021.04.05:
