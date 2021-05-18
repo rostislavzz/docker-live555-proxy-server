@@ -1,3 +1,8 @@
+2021.05.17:
+- If a stream has no known duration, then our "a=range:" line (in the server's SDP description)
+  now says "npt=now-" rather than "npt=0-".  Although the latter appears to be valid
+  (according to RFC 2326), it has been claimed that "ffmpeg" RTSP clients do not handle it.
+  (Thanks to Dmitry Bely for raising this issue.)
 2021.05.03:
 - Updated the code for "getOurIPAddresses()" to check that "p->ifa_addr" is not NULL before
   we try dereferencing it.  (Thanks to Thore Mehr for noting this.)
