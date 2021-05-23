@@ -1,3 +1,7 @@
+2021.05.22:
+- Fixed a bug that might cause a "REGISTER" or "DEREGISTER" command to be handled after
+  the corresponding "RTSPClientConnection" object is deleted.
+  (Thanks to Mario Takeuchi for reporting this bug and providing a patch.)
 2021.05.17:
 - If a stream has no known duration, then our "a=range:" line (in the server's SDP description)
   now says "npt=now-" rather than "npt=0-".  Although the latter appears to be valid
