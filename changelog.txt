@@ -1,3 +1,9 @@
+2021.06.25:
+- Updated "H264or5VideoStreamFramer.cpp" to set the default value of "DeltaTfiDivisor" to
+  1.0 (rather than 2.0), and to assume a frame rate of 30 fps (rather than 25 fps) if there
+  is no VPS or SPS NAL unit that specifies a different frame rate.  This seems to work the best
+  for most raw H.264 and H.265 video streams.  (Thanks to Paul Westlund for supplying an
+  example file to motivate this.)
 2021.05.22:
 - Fixed a bug that might cause a "REGISTER" or "DEREGISTER" command to be handled after
   the corresponding "RTSPClientConnection" object is deleted.
