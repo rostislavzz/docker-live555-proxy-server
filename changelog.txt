@@ -1,3 +1,9 @@
+2021.06.29:
+- In the proxy server implementation, if a client closes one substream, but there are still
+  other clients receiving other substream(s), then we no send a single-track RTSP "PAUSE"
+  command downstream, because some back-end servers might handle that by pausing all tracks
+  of the stream.  So now, in this case, we don't send a RTSP "PAUSE" command at all.
+  (Thanks to Jose Maria Infanzon for noting this issue.)
 2021.06.25:
 - Updated "H264or5VideoStreamFramer.cpp" to set the default value of "DeltaTfiDivisor" to
   1.0 (rather than 2.0), and to assume a frame rate of 30 fps (rather than 25 fps) if there
