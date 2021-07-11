@@ -1,3 +1,7 @@
+2021.07.10:
+- Updated "H264or5VideoStreamFramer.cpp" once again to set the default value of
+  "DeltaTfiDivisor" to 2.0 for H.265, and 1.0 for everything else.  (This fixes the frame rate
+  for another stream supplied by Paul Westlund.)
 2021.06.29:
 - In the proxy server implementation, if a client closes one substream, but there are still
   other clients receiving other substream(s), then we no send a single-track RTSP "PAUSE"
