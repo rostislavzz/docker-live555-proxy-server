@@ -1,3 +1,7 @@
+2021.08.13:
+- Fixed a bug in "MPEG1or2Demux" that could cause a 'reading twice at the same time" abort
+  when streaming from a MPEG Program Stream file.  (Thanks to Ba Jinsheng for reporting this.)
+- Fixed a potential memory leak in "AC3AudioStreamFramer".  (Thanks to Ba Jinsheng for reporting this.)
 2021.08.09:
 - Fixed a bug in the MPEG-1 or 2 file server demultiplexors that could cause a RTSP server
   to crash if it received successive RTSP "SETUP" commands for the same track.
