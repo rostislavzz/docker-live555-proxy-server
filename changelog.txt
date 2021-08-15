@@ -1,3 +1,5 @@
+2021.08.14:
+- Fixed a minor bug in the previous release ("delete" should have been "delete[]")
 2021.08.13:
 - Fixed a bug in "MPEG1or2Demux" that could cause a 'reading twice at the same time" abort
   when streaming from a MPEG Program Stream file.  (Thanks to Ba Jinsheng for reporting this.)
