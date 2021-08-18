@@ -1,3 +1,6 @@
+2021.08.17:
+- Updated the 'groupsock' "setPortNum()" function to not rely upon the "ss_family" family
+  field, in case it's uninitialized.
 2021.08.14:
 - Fixed a minor bug in the previous release ("delete" should have been "delete[]")
 2021.08.13:
