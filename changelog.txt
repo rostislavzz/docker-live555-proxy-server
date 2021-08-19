@@ -1,3 +1,6 @@
+2021.08.18:
+- Updated the "readSocket()" code in "GroupsockHelper.cpp" to eliminate a
+  "depends on uninitialised value" report from 'valgrind'.  (Thanks to Dmitry Kostromin)
 2021.08.17:
 - Updated the 'groupsock' "setPortNum()" function to not rely upon the "ss_family" family
   field, in case it's uninitialized.
