@@ -1,3 +1,12 @@
+Next version, in progress:
+- The final (I hope!) update to eliminate a "depends on uninitialised value" report from 'valgrind'.
+  Because "recvfrom()" can be expected to fill in the 'from' address only if it's called on a
+  datagram socket, we update the implementation of "RTPInterface::handleRead()" to set the
+  'from' address variable to a 'dummy' value before calling "readSocket()", in the case where
+  it's reading RTP/RTCP-over-TCP.
+2021.08.23:
+- Updated the "readSocket()" code in "GroupsockHelper.cpp" yet again to try to eliminate
+  another (alleged) "depends on uninitialised value" report from 'valgrind'.
 2021.08.19:
 - Updated the "readSocket()" code in "GroupsockHelper.cpp" to eliminate another possible
   "depends on uninitialised value" report from 'valgrind'.  (Thanks to Dmitry Kostromin)
