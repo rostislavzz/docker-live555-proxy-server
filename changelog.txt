@@ -1,4 +1,4 @@
-Next version, in progress:
+2021.08.24:
 - The final (I hope!) update to eliminate a "depends on uninitialised value" report from 'valgrind'.
   Because "recvfrom()" can be expected to fill in the 'from' address only if it's called on a
   datagram socket, we update the implementation of "RTPInterface::handleRead()" to set the
