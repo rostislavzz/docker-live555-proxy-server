@@ -16,11 +16,11 @@ jobs:
         id: check-for-new-version
         timeout-minutes: 1
         run: |
-          if [ $(curl -s -N http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp -s live555-latest-md5.txt) ];
+          if [ -n "$(curl -s -N http://www.live555.com/liveMedia/public/live555-latest-md5.txt | cmp -s live555-latest-md5.txt)" ];
           then
-            echo "::set-output name=available::0"
-          else
             echo "::set-output name=available::1"
+          else
+            echo "::set-output name=available::0"
           fi
       - name: Download changelog
         if: ${{ steps.check-for-new-version.outputs.available == 1 }}
