@@ -1,6 +1,7 @@
 name: Check for new version of LIVE555 Media Server
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
 
