@@ -1,6 +1,7 @@
 name: Build new version of LIVE555 Proxy Server
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - "*"
