@@ -1,3 +1,169 @@
+2023.07.24:
+- Updated the event trigger implementation once again, to allow for the possibility of
+  developers redefining MAX_NUM_EVENT_TRIGGERS (it must always be <= the number of bits
+  in an "EventTriggerId", though.  (Thanks to Jan Rørgaard Hansen for this suggestion.)
+2023.06.20:
+- Updated the event trigger implementation again - in the case where "NO_STD_LIB" is
+  defined.  In this case, "fTriggersAwaitingHandling" is implemented as an array of
+  "Boolean volatile"s, rather than as a 32-bit bitmap.  This should make 'race conditions'
+  less likely even if "NO_STD_LIB" is defined (though you should use the preferred, default
+  implementation - that uses an array of "std::atomic_flag"s - if possible).
+2023.06.16:
+- Changed the (default) implementation of 'event triggers' in "BasicTaskScheduler" to
+  implement "fTriggersAwaitingHandling" using "std:atomic_flag"s, rather than as a bitmap.
+  This should overcome 'race conditions' that some users experienced when calling
+  "triggerEvent()" from a non-LIVE555 thread.  (Thanks to Jan Rørgaard Hansen for reporting
+  this issue.)
+  Note that this is the first time the LIVE555 code has required the C++ standard library.
+  (If you cannot use the C++ standard library, then you can compile the code - but getting the
+  old behavior - by defining "NO_STD_LIB".)
+- Minor change to "RTSPCommon.cpp" to overcome a compilation error in XCode on Mac OS X.
+2023.06.14:
+- Fixed a bug in the Matroska file parsing code that could sometimes cause a 'use after free'
+  error.  (Thanks to Meng Ruijie, Martin Mirchev, and "jerry testing" for reporting this.)
+2023.06.10:
+- Minor change to "GroupsockHelper.cpp" to overcome a compilation error in XCode on Mac OS X.
+2023.06.08:
+- Updated the "dateHeader()" function in "RTSPCommon.cpp" to use "gmtime_r()" instead of
+  the older, non-thread-safe "gmtime()".  (Thanks to Russell Greene for the patch.)
+2023.05.10:
+- Fixed a minor memory leak in the "RTSPServer" code.
+  (Thanks to Zhudong Jie for reporting this.)
+2023.03.30:
+- Calls to "send()" and "sendto()" now explicitly take "MSG_NOSIGNAL" rather than 0 as the
+  'flags' parameter.  In most systems, 0 seems to work, but apparently not in
+  Debian Linux.  (Thanks to Eric Beuque for reporting this.)
+2023.01.19:
+- By default, we no longer compile "groupsock/NetAddress.cpp" for Windows to use
+  "gethostbyname()", because of a report that this breaks IPv6 name resolution.
+  (From now on, if you still want to use "gethostbyname()" for Windows, edit the
+  "win32config" file before running "genWindowsMakefiles".)
+2023.01.11:
+- Updated the "BasicTaskScheduler"/"DelayQueue" implementation to make the 'token counter'
+  a field of the task scheduler object, rather than having it be a static variable.
+  This avoids potential problems if an application uses more than one thread (with each thread
+  having its own task scheduler).  (Thanks to Jan Rørgaard Hansen for reporting this issue.)
+- Performed the annual update of the copyright years near the start of each file
+2022.12.01:
+- Yet another fix to the previous fix for RTSP-over-HTTP streaming.
+2022.11.30:
+- The previous version's fix to "RTSPClient" (for RTSP-over-HTTP streaming) was incomplete.
+  This should fix it for real.
+2022.11.29:
+- Fixed a bug in "RTSPClient" that would cause RTSP-over-HTTP streaming over TLS to
+  sometimes fail.  (Thanks to Johannes Gajdosik for reporting this.)
+- Fixed a bug that would cause a RTSP server to use an incorrect URL if it accepted connections
+  via TLS, but *without* streaming SRTP.
+2022.11.19:
+- Added a new global variable "ReceivingInterfaceAddr6" (analogous to the existing
+  variable "ReceivingInterfaceAddr" for IPv4) to allow applications to optionally
+  change the default receiving address for IPv6.
+  (Thanks to Yahia Benmoussa for the patch.)
+2022.10.01:
+- Updated the previous revision so that the virtual function "specialHandlingOfAuthenticationFailure()"
+  is now called only if there is an actual authentication failure - not on the first time that
+  we send back a "401 Unauthorized" response.
+2022.09.30:
+- Added a new virtual function "specialHandlingOfAuthenticationFailure()" to "RTSPServer" to
+  allow a subclassed "RTSPServer" to take special action (e.g., statistics logging)
+  whenever an authentication failure occurs.  (By default, the function does nothing.)
+  (Thanks to Joerg Dommaschk for this suggestion.)
+2022.07.14:
+- (This does not change the code at all.)  We now use SHA-1 rather than MD5 to hash the
+  latest tarball of our code (as SHA-1 is considered a more secure hash than MD5).
+2022.06.16:
+- Both our RTSP client and RTSP server implementations now support (optional)
+  RTSP-over-HTTPS streaming, when RTSP-over-TLS would otherwise be available.
+  (This does not apply to a RTSP server that streams SRTP/SRTCP.  In that case, sending
+  SRTP/SRTCP over a TLS connection would add unnecessary overhead, so is not supported.)
+2022.06.14:
+- Added optional support (via #ifdefs) to the "testOnDemandRTSPServer" demo application
+  for streaming via RTSPS (RTSP-over-TLS) and optionally SRTP (encrypted RTP/RTCP).
+  To use this, you would need to define SERVER_USE_TLS, and PATHNAME_TO_CERTIFICATE_FILE and
+  PATHNAME_TO_PRIVATE_KEY_FILE.
+2022.04.26:
+- A minor update to the previous release, to ensure that we don't call "delete[]" on an
+  uninitialized pointer.
+2022.04.25:
+- Updated "RTSPClient" so that it can optionally include a "Require:" header in RTSP commands.
+  (See the definition of "setRequireValue()" in "include/RTSPClient.hh")
+  (Thanks to Gregory Chiapa from Thales Group for suggesting this.)
+2022.04.15:
+- Fixed a "fprintf()" argument-order-evaluation bug in the "mikeyParse" demo application.
+  (Thanks to Taeho Kim for reporting this.)
+2022.04.12:
+- Updated the "openRTSP" application (RTSP command-line client) to add an option '-L', meaning:
+  receive only an "application" (e.g., 'metadata') track, if present, outputting the data
+  to 'stdout'.  (This is analogous to the existing '-a' and '-v' options, for receiving only
+  audio or video.)
+2022.02.07:
+- Updated the SRTP packet sending code in "MultiFramedRTPSink.cp" to not allocate
+  a variable-sized buffer on the stack, because some compilers can't handle this.
+- Ensure that RTSP servers that serve SRTP do not also support streaming over the TCP connection,
+  because that would add extra overhead for no benefit.
+2022.01.21:
+- Fixed a bug in the "groupsock" library that could cause outgoing RTP packets to get duplicated
+  when a RTSP "PLAY" command is sent after a "PAUSE".
+  (Thanks to Yahia Benmoussa for reporting this.)
+2022.01.20:
+- More updates to the code for optional server SRTP streaming.
+  (This appears to be working now, but needs further testing before being officially announced.)
+2022.01.17:
+- More updates to the code in preparation for optional server SRTP streaming.
+  (SRTCP transmission and reception is now working; SRTP transmission is not working yet.)
+2022.01.11:
+- Fixed a minor memory leak in "RTSPClient" when receiving a SRTP stream.
+- Updates to "RTPSink" in preparation for optional server SRTP streaming - not working yet.)
+2022.01.06:
+- Made "GenericMediaServer::addServerMediaSubsession()" a virtual function, and redefine it
+  in the subclass "RTSPServer" to call the base function, then set the "ServerMediaSubsession"s
+  "streamingIsEncrypted" flag (if the RTSP server is streaming SRTP).
+  (This is in preparation for optional server SRTP streaming - not working yet.)
+2021.12.18:
+- Fixed a bug in the way that "RTSPClient" handles its two separate TCP connections when
+  it does RTSP-over-HTTP.  (Thanks to Laszlo Ast for noticing this.)
+- Updated "RTPInterface::sendDataOverTCP()" so that if it's necessary to do a blocking send(),
+  we call "makeSocketNonBlocking()" immediately after the call to "send()".
+  (This fixes an issue noted by Andrei Chtcherbatchenko.)
+- Performed the annual update of the copyright years near the start of each file
+2021.12.07:
+- Added #ifndef NO_OPENSSL/#endif around "#include <openssl/err.h>" in "liveMedia/TLSState.cpp",
+  so that the code will compile if you're compiling with no OpenSSL headers, and NO_OPENSSL
+  defined.  (Thanks to William Pfeffer for noticing this.)
+2021.11.23:
+- Updated the "RTSPServer::setTLSState()" function to take an optional parameter
+  "weServeSRTP".  For now, the default value of this parameter is False, but it will
+  get changed to True later, when we implement server-side SRTP.
+2021.11.14:
+- Updated the RTSP server implementation to (optionally) support connections via TLS.
+  To enable this, call
+      setTLSState(<certFileName>, <privKeyFileName>);
+  on your newly-created "RTSPServer" object (before you enter the event loop to start
+  handling requests) - where <certFileName> is the (string) pathname of a certificate file,
+  and <privKeyFileName> is the (string) pathname of a private key file - both in PEM format.
+  At present, this implementation does *not* serve SRTP (encrypted RTP/RTCP), and so does
+  not accept "rtsps://" URLs.  (This will change in the future.)
+2021.11.10:
+- Updated the "TLSState" interface and implementation to (1) reduce the amount of stuff
+  that the compiler gets to see if you're compiling with NO_OPENSSL defined, and (2) add a
+  new subclass "ServerTLSState" that will eventually be used to implement optional
+  TLS connections to our RTSP server.  (This has not been completed yet.)
+2021.11.01:
+- Split the "TLSState" class into two classes: "TLSState" (an abstract base class),
+  and "ClientTLSState" (a subclass).  This is in preparation for later defining a
+  second subclass "ServerTLSState" that will eventually be used to implement TLS connections
+  in our RTSP server.
+2021.10.31:
+- Updated the implementation of AES encryption/decryption (used by our client SRTP
+  implementation) to use the new OpenSSL EVP interface.  This makes it possible to
+  use hardware acceleration (e.g., AES-NI), when it is available.
+2021.10.28:
+- Updated the "RTSPClient"s implementation of receiving RTP/RTCP-over-TCP so that it will
+  also work over a RTSP-over-TLS (including RTSPS) connection.
+2021.10.20:
+- Fixed a bug in "MatroskaFileParser" that could cause delivery of data to a downstream object
+  that wasn't expecting it (potentially causing an invalid memory access).
+  (Thanks to "pany.2011" for reporting this.)
 2021.08.24:
 - The final (I hope!) update to eliminate a "depends on uninitialised value" report from 'valgrind'.
   Because "recvfrom()" can be expected to fill in the 'from' address only if it's called on a
