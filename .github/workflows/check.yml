@@ -10,9 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PAT }}
+        uses: actions/checkout@v4
       - name: Check for new version
         id: check-for-new-version
         timeout-minutes: 1
