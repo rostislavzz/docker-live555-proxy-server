@@ -9,6 +9,8 @@ jobs:
   check-for-new-version:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Check for new version
         id: check-for-new-version
         timeout-minutes: 1
@@ -19,9 +21,6 @@ jobs:
           else
             echo "AVAILABLE=1" >> "$GITHUB_OUTPUT"
           fi
-      - name: Checkout
-        if: ${{ steps.check-for-new-version.outputs.AVAILABLE == 1 }}
-        uses: actions/checkout@v4
       - name: Download changelog
         if: ${{ steps.check-for-new-version.outputs.AVAILABLE == 1 }}
         timeout-minutes: 1
