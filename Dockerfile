@@ -19,7 +19,7 @@ RUN cd /tmp/live && ./genMakefiles linux && \
   make && make install && make distclean
 
 FROM alpine
-RUN apk add --update --no-cache gcc
+RUN apk add --update --no-cache libstdc++
 COPY --from=builder /usr/local/bin/live555ProxyServer /usr/local/bin/
 
 EXPOSE 554
