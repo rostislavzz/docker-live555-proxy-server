@@ -1,3 +1,7 @@
+2023.10.30:
+- Fixed a bug in "deleteEventTrigger()" that had accidentally been introduced during the
+  change to 'event trigger' implementation back in June.
+  (Thanks to Jörg Dommaschk for reporting this.)
 2023.07.24:
 - Updated the event trigger implementation once again, to allow for the possibility of
   developers redefining MAX_NUM_EVENT_TRIGGERS (it must always be <= the number of bits
