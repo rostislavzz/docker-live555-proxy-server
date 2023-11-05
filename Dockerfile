@@ -22,7 +22,6 @@ FROM alpine
 RUN apk add --update --no-cache libstdc++
 COPY --from=builder /usr/local/bin/live555ProxyServer /usr/local/bin/
 
-EXPOSE 554
-EXPOSE 8554
+EXPOSE 554 8554
 
 ENTRYPOINT ["live555ProxyServer"]
