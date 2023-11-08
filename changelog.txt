@@ -1,3 +1,7 @@
+2023.11.07:
+- In the class "GenericMediaServer", made the variables "fServerMediaSessions",
+  "fClientConnections", and "fClientSessions" 'protected' rather than 'private',
+  to allow subclasses to access them if desired.
 2023.10.30:
 - Fixed a bug in "deleteEventTrigger()" that had accidentally been introduced during the
   change to 'event trigger' implementation back in June.
