@@ -1,3 +1,8 @@
+2023.11.08:
+- Changed the signature to the virtual function "getRTPSinkandRTCP()" (in "ServerMediaSubession",
+  and its subclasses "OnDemandServerMediaSession" and "PassiveServerMediaSubsession")
+  to make its 'result' arguments "rtpSink" and "rtcp" no longer "const *".  There was no
+  real reason to make those "const *".  (Thanks to Andy Hawkins for prompting this.)
 2023.11.07:
 - In the class "GenericMediaServer", made the variables "fServerMediaSessions",
   "fClientConnections", and "fClientSessions" 'protected' rather than 'private',
