@@ -1,3 +1,8 @@
+2023.11.30:
+- In the implementation of the "MPEGVideoStreamFramer" class, gave "TimeCode::operator==()"
+  the "const" qualifier, to make some compilers happy.
+  (Thanks to Dmitry Bely for the report)
+- Performed the annual update of the copyright years near the start of each file
 2023.11.08:
 - Changed the signature to the virtual function "getRTPSinkandRTCP()" (in "ServerMediaSubession",
   and its subclasses "OnDemandServerMediaSession" and "PassiveServerMediaSubsession")
